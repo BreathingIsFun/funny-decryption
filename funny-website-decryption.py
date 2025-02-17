@@ -28,7 +28,7 @@ def checkcls(input):
             #print(a)
             try:
                 int(a.replace("cls",""),16)
-                trailingnumber = a[-3:]
+                trailingnumber = a[-4:]
                 return trailingnumber
             except:
                 continue
