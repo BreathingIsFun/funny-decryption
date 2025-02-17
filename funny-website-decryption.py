@@ -19,11 +19,28 @@ def getkey(encrypted, decrypted):
 #decode the encryption
 def decoder(encrypted, key):
     return chr(ord(encrypted)-key)
+
+#removes cls-codes
+def checkcls(input):
+    spliter = input.replace(".cls", ". cls").split()
+    for a in spliter:
+        if a.startswith("cls"):
+            #print(a)
+            try:
+                int(a.replace("cls",""),16)
+                trailingnumber = a[-3:]
+                return trailingnumber
+            except:
+                continue
+    return None
     
 #just more shitty design
-def removejunk (input):
-    helper = input.replace("cls", "`").replace("711","´")
-    helper = re.sub(r'`.+?´', "", helper)
+def removejunk (input,clsdelimiter):
+    if clsdelimiter != None:
+        helper = input.replace("cls", "`").replace(clsdelimiter,"´")
+        helper = re.sub(r'`.+?´', "", helper)
+    else:
+        helper = input
     return helper
 
 limitBIG = deflimits(*CHARTUPLE, "A")
@@ -49,7 +66,7 @@ def sanity (char):
 
 input = """" """
 result = ""
-input2 = removejunk(input)
+input2 = removejunk(input,checkcls(input))
 for c in input2:
     result = result+sanity(c)
 print(result)
