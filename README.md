@@ -1,1 +1,1 @@
-this is a small script to decode content protected text of a WN translation website
+this is a small python script to decode content protected text of a WN translation website
